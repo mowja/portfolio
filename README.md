@@ -2,6 +2,16 @@
 
 Infrastructure practice portfolio site for GitHub Pages.
 
+## Repository name
+
+Recommended repository name: `portfolio`
+
+Expected Pages URL after setup:
+
+```text
+https://mowja.github.io/portfolio/
+```
+
 ## Contents
 
 - Portfolio presentation PPTX
@@ -10,6 +20,21 @@ Infrastructure practice portfolio site for GitHub Pages.
 - 3Tier DNS DHCP NAT practice guide PDF
 - Docker DNS application practice guide PDF
 
-## GitHub Pages
+## Publish
 
-This repository is intended to be served from GitHub Pages using the `main` branch and root (`/`) directory.
+1. Create a new public GitHub repository named `portfolio`.
+2. Do not initialize it with README, `.gitignore`, or license.
+3. Run:
+
+```powershell
+.\deploy.ps1 https://github.com/mowja/portfolio.git
+```
+
+4. Enable GitHub Pages:
+   - Repository `Settings`
+   - `Pages`
+   - Source: `Deploy from a branch`
+   - Branch: `main`
+   - Folder: `/ (root)`
+
+GitHub Pages usually becomes available within a few minutes.
