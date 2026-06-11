@@ -3,311 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>duckite | Cloud & Network Engineer</title>
+<title>duckite | Cloud &amp; Infrastructure Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-brand">환영합니다. 저의 포트폴리오에</div>
-  <ul class="nav-links">
-    <li><a href="#about">소개</a></li>
-    <li><a href="#skills">기술</a></li>
-    <li><a href="#projects">프로젝트</a></li>
-    <li><a href="#architecture">아키텍처</a></li>
-    <li><a href="#timeline">이력</a></li>
-    <li><a href="#contact">연락</a></li>
-  </ul>
-</nav>
+<div class="portfolio-shell">
+  <nav class="deck-nav" aria-label="포트폴리오 슬라이드 메뉴">
+    <button class="nav-brand" type="button" data-slide="0">
+      <span>곽덕연</span>
+      <small>Cloud &amp; Infrastructure Engineer</small>
+    </button>
+    <ul class="nav-links">
+      <li><button type="button" data-slide="0">자기소개</button></li>
+      <li><button type="button" data-slide="1">기술 역량</button></li>
+      <li><button type="button" data-slide="2">프로젝트 경험</button></li>
+      <li><button type="button" data-slide="3">갤러리</button></li>
+      <li><button type="button" data-slide="4">경력/이력</button></li>
+    </ul>
+    <div class="slide-counter" id="slideCounter">01 / 05</div>
+  </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg-line"></div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow">구직 중 · 2026</div>
-    <h1 class="name-ko">곽덕연</h1>
-    <h1 class="name-en">Kwak Deokyeon</h1>
-    <p class="hero-role">
-      Cloud &amp; Infrastructure Engineer<br>
-      <span style="font-size:13px; color:var(--muted);">온프레미스 · AWS · 네트워크</span><br>
-      <span style="font-size:13px; color:var(--muted);">강원대학교 정보통신공학 · GPA 4.01 / 4.5</span>
-    </p>
-    <p class="hero-desc">
-      <strong>3-Tier 인프라 설계</strong>부터 <strong>AWS 클라우드 구축</strong>까지, 운영 관점을 함께 고려하는 엔지니어입니다. 빠른 우회책보다 <strong>근본 원인 파악</strong>을 우선합니다.
-    </p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn-solid">프로젝트 보기</a>
-      <a href="#contact" class="btn-outline">연락하기</a>
-    </div>
-    <div class="hero-stats-row">
-      <div class="stat-cell"><div class="stat-n">3+</div><div class="stat-l">주요 프로젝트</div></div>
-      <div class="stat-cell"><div class="stat-n">2</div><div class="stat-l">보유 자격증</div></div>
-      <div class="stat-cell"><div class="stat-n">6mo</div><div class="stat-l">클라우드 집중 교육</div></div>
-      <div class="stat-cell"><div class="stat-n">2회</div><div class="stat-l">수상 경력</div></div>
-      <div class="stat-cell"><div class="stat-n">4.01</div><div class="stat-l">학점 / 4.5</div></div>
-    </div>
-  </div>
-</section>
+  <main class="deck-stage" id="deckStage" aria-live="polite">
+    <button class="deck-arrow deck-arrow-prev" id="prevSlide" type="button" aria-label="이전 슬라이드">
+      <span class="arrow-mark">‹</span>
+      <span class="arrow-text">이전</span>
+    </button>
 
-<hr class="divider">
-
-<!-- ABOUT -->
-<section id="about">
-<div class="s-wrap">
-  <div class="s-label">01 — ABOUT</div>
-  <h2 class="s-title">저는 이런 <span>엔지니어입니다.</span></h2>
-  <div class="about-grid">
-    <div class="reveal">
-      <p class="about-p">MegaZone Cloud 6개월 과정을 수료하며 <strong>온프레미스 3-Tier 인프라 구축</strong>부터 <strong>AWS 기반 클라우드 환경 설계</strong>까지, 단순 구성을 넘어 운영 관점까지 고려하는 역량을 쌓았습니다.</p>
-      <p class="about-p">ELK 스택 기반 로그 모니터링과 Metricbeat 리소스 추적을 직접 구축하며, <strong>인프라가 살아있는지 보는 눈</strong>을 키웠습니다.</p>
-      <p class="about-p">온프레미스와 클라우드 양쪽의 실무 경험을 통해, 두 환경을 연결하는 시각을 가진 엔지니어로 성장하고 있습니다.</p>
-      <div class="about-highlight">ESP32 스마트팜 프로젝트에서 10일간 임시방편을 반복하다, 공식 문서 한 번으로 해결했습니다. 그 이후로 저는 항상 <strong>근본 원인을 먼저 파악</strong>합니다.</div>
-    </div>
-    <div class="info-block reveal">
-      <div class="info-card">
-        <div class="info-ic">🎓</div>
-        <div>
-          <div class="info-title">클라우드 인프라 엔지니어링 과정</div>
-          <div class="info-sub">MegaZone Cloud</div>
-          <div class="info-badge">2024 — 2025 수료</div>
+    <section class="deck-slide active" data-slide="0" id="intro">
+      <article class="slide-card intro-card">
+        <div class="slide-kicker">01 — INTRO</div>
+        <div class="intro-layout">
+          <div class="intro-main">
+            <div class="hero-eyebrow">구직 중 · 2026</div>
+            <h1 class="name-ko">곽덕연</h1>
+            <p class="name-en">Kwak Deokyeon</p>
+            <div class="hero-role">
+              Cloud &amp; Infrastructure Engineer<br>
+              <span>온프레미스 · AWS · 네트워크 · AI/RAG</span><br>
+              <span>강원대학교 정보통신공학 · GPA 4.01 / 4.5</span>
+            </div>
+            <p class="hero-desc">
+              3-Tier 인프라 설계부터 AWS 클라우드 구축까지, 운영 관점을 함께 고려하는 엔지니어입니다. 빠른 우회책보다 근본 원인 파악을 우선합니다.
+            </p>
+            <div class="intro-actions">
+              <button class="btn-solid" type="button" data-slide="2">프로젝트 보기</button>
+              <button class="btn-outline" id="emailBtn" type="button">mowja@naver.com 복사</button>
+            </div>
+          </div>
+          <div class="intro-side">
+            <div class="stats-grid">
+              <div class="stat-cell"><strong>3+</strong><span>주요 프로젝트</span></div>
+              <div class="stat-cell"><strong>2</strong><span>보유 자격증</span></div>
+              <div class="stat-cell"><strong>6mo</strong><span>클라우드 교육</span></div>
+              <div class="stat-cell"><strong>2회</strong><span>수상 경력</span></div>
+              <div class="stat-cell"><strong>4.01</strong><span>학점 / 4.5</span></div>
+            </div>
+            <div class="intro-note">
+              <strong>핵심 태도</strong>
+              <p>ESP32 스마트팜 프로젝트에서 10일간 임시방편을 반복한 뒤 공식 문서로 원인을 해결했습니다. 이후 문제를 만나면 먼저 흐름과 원인을 분해합니다.</p>
+            </div>
+            <div class="quick-cards">
+              <div><b>지원 포지션</b><span>Cloud · System · Network Engineer</span></div>
+              <div><b>강점</b><span>아키텍처 문서화 · 운영 관점 · 트러블슈팅</span></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="info-card">
-        <div class="info-ic">🏆</div>
-        <div>
-          <div class="info-title">최우수팀상 수상</div>
-          <div class="info-sub">AWS VDI + AI 챗봇 구축 프로젝트</div>
-          <div class="info-badge">MegaZone Cloud 선정</div>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-ic">📄</div>
-        <div>
-          <div class="info-title">학술대회 수상 · 연구노트상</div>
-          <div class="info-sub">스마트팜 자동화 시스템 (졸업 프로젝트)</div>
-          <div class="info-badge">2개 수상</div>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-ic">🎯</div>
-        <div>
-          <div class="info-title">지원 포지션</div>
-          <div class="info-sub">Cloud Engineer · System Engineer · Network Engineer</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
+      </article>
+    </section>
 
-<hr class="divider">
-
-<!-- SKILLS -->
-<section id="skills" style="background:var(--off);">
-<div class="s-wrap">
-  <div class="s-label">02 — SKILLS</div>
-  <h2 class="s-title">기술 <span>스택</span></h2>
-  <div class="skills-grid">
-    <div class="sk-card reveal">
-      <div class="sk-head"><div class="sk-dot" style="background:#2563eb;"></div><div class="sk-name">On-Premises</div></div>
-      <div class="sk-tags">
-        <span class="sk-tag">3-Tier Architecture</span><span class="sk-tag">Nginx</span>
-        <span class="sk-tag">Apache</span><span class="sk-tag">MariaDB</span>
-        <span class="sk-tag">DHCP</span><span class="sk-tag">DNS</span>
-        <span class="sk-tag">NAT</span><span class="sk-tag">Firewall</span>
-        <span class="sk-tag">VPN</span><span class="sk-tag">Terraform</span>
-      </div>
-    </div>
-    <div class="sk-card reveal">
-      <div class="sk-head"><div class="sk-dot" style="background:#0ea5e9;"></div><div class="sk-name">AWS Cloud</div></div>
-      <div class="sk-tags">
-        <span class="sk-tag">EC2</span><span class="sk-tag">VPC / NACL</span>
-        <span class="sk-tag">WorkSpaces</span><span class="sk-tag">Kendra</span>
-        <span class="sk-tag">Bedrock</span><span class="sk-tag">Kinesis Firehose</span>
-        <span class="sk-tag">S3</span><span class="sk-tag">CloudWatch</span>
-        <span class="sk-tag">Secrets Manager</span>
-      </div>
-    </div>
-    <div class="sk-card reveal">
-      <div class="sk-head"><div class="sk-dot" style="background:#f59e0b;"></div><div class="sk-name">Monitoring / Logging</div></div>
-      <div class="sk-tags">
-        <span class="sk-tag">Elasticsearch</span><span class="sk-tag">Logstash</span>
-        <span class="sk-tag">Kibana</span><span class="sk-tag">Metricbeat</span>
-        <span class="sk-tag">ELK Stack</span>
-      </div>
-    </div>
-    <div class="sk-card reveal">
-      <div class="sk-head"><div class="sk-dot" style="background:#8b5cf6;"></div><div class="sk-name">AI / RAG Pipeline</div></div>
-      <div class="sk-tags">
-        <span class="sk-tag">Amazon Kendra</span><span class="sk-tag">Amazon Bedrock</span>
-        <span class="sk-tag">RAG Architecture</span><span class="sk-tag">Flask</span>
-      </div>
-    </div>
-    <div class="sk-card reveal">
-      <div class="sk-head"><div class="sk-dot" style="background:#10b981;"></div><div class="sk-name">Embedded / IoT</div></div>
-      <div class="sk-tags">
-        <span class="sk-tag">ESP32</span><span class="sk-tag">SPIFFS</span>
-        <span class="sk-tag">Jetson Nano</span>
-      </div>
-    </div>
-    <div class="sk-card reveal">
-      <div class="sk-head"><div class="sk-dot" style="background:#6b7280;"></div><div class="sk-name">Network &amp; Tools</div></div>
-      <div class="sk-tags">
-        <span class="sk-tag">Linux</span><span class="sk-tag">Wireshark</span>
-        <span class="sk-tag">Git</span><span class="sk-tag">Terraform</span>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<hr class="divider">
-
-<!-- PROJECTS -->
-<section id="projects">
-<div class="s-wrap">
-  <div class="s-label">03 — PROJECTS</div>
-  <h2 class="s-title">프로젝트 <span>경험</span></h2>
-  <p style="font-size:13px; color:var(--muted); margin-top:-2rem; margin-bottom:2rem; font-family:var(--mono);">카드를 클릭하면 자세히 볼 수 있습니다.</p>
-  <div class="proj-list">
-
-    <div class="proj-card reveal">
-      <div class="proj-left">
-        <div class="proj-num">01</div>
-        <div class="proj-badges">
-          <span class="p-badge b-cloud">AWS Cloud</span>
-          <span class="p-badge b-award">🏆 최우수팀상</span>
+    <section class="deck-slide" data-slide="1" id="skills">
+      <article class="slide-card">
+        <div class="slide-kicker">02 — SKILLS</div>
+        <div class="slide-header">
+          <h2>기술 역량</h2>
+          <p>온프레미스 기반기부터 AWS, 로그 분석, AI/RAG까지 프로젝트 흐름에 맞춰 다룬 기술입니다.</p>
         </div>
-      </div>
-      <div class="proj-right">
-        <h3 class="proj-title">AWS VDI · 3-Tier Web · AI Knowledge Base 통합 플랫폼</h3>
-        <p class="proj-desc">WorkSpaces, 3-Tier 내부 웹 서비스, Kendra·Bedrock RAG, 로그 분석 흐름을 하나의 업무 플랫폼으로 설계하고 AI 문서 검색 챗봇을 구현했습니다.</p>
-        <div class="proj-stack">
-          <span class="p-tag">Amazon WorkSpaces</span><span class="p-tag">3-Tier Web</span>
-          <span class="p-tag">Amazon Kendra</span><span class="p-tag">Amazon Bedrock</span>
-          <span class="p-tag">Lambda</span><span class="p-tag">API Gateway</span><span class="p-tag">VPC Peering</span>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-head"><span class="skill-dot blue"></span><strong>On-Premises</strong></div>
+            <div class="tag-list">
+              <span>3-Tier Architecture</span><span>Nginx</span><span>Apache</span><span>MariaDB</span><span>DHCP</span><span>DNS</span><span>NAT</span><span>Firewall</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-head"><span class="skill-dot cyan"></span><strong>AWS Cloud</strong></div>
+            <div class="tag-list">
+              <span>EC2</span><span>VPC</span><span>WorkSpaces</span><span>Kendra</span><span>Bedrock</span><span>S3</span><span>CloudFront</span><span>CloudWatch</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-head"><span class="skill-dot amber"></span><strong>Monitoring / Logging</strong></div>
+            <div class="tag-list">
+              <span>Elasticsearch</span><span>Logstash</span><span>Kibana</span><span>Metricbeat</span><span>Rsyslog</span><span>Athena</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-head"><span class="skill-dot green"></span><strong>Network &amp; Tools</strong></div>
+            <div class="tag-list">
+              <span>Linux</span><span>Routing</span><span>VLAN</span><span>Wireshark</span><span>Git</span><span>Terraform</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-head"><span class="skill-dot violet"></span><strong>ETC.</strong></div>
+            <div class="tag-list">
+              <span>Amazon Kendra</span><span>Amazon Bedrock</span><span>Claude</span><span>GPT</span><span>RAG Pipeline</span><span>Lambda</span><span>API Gateway</span><span>ESP8266</span><span>Raspberry Pi</span><span>Django</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </article>
+    </section>
 
-    <div class="proj-card reveal">
-      <div class="proj-left">
-        <div class="proj-num">02</div>
-        <div class="proj-badges">
-          <span class="p-badge b-onprem">On-Premises</span>
+    <section class="deck-slide" data-slide="2" id="projects">
+      <article class="slide-card">
+        <div class="slide-kicker">03 — PROJECTS</div>
+        <div class="slide-header">
+          <h2>프로젝트 경험</h2>
+          <p>카드를 누르면 상세 모달에서 구현 역할, 아키텍처, 트러블슈팅을 확인할 수 있습니다.</p>
         </div>
-      </div>
-      <div class="proj-right">
-        <h3 class="proj-title">패션 이커머스 서버 인프라 고가용성 전환 구축</h3>
-        <p class="proj-desc">WEB / WAS / DB 3-Tier 아키텍처를 설계하고 ELK 스택 기반 중앙화 로그 모니터링, Metricbeat 리소스 추적 시스템을 구현했습니다.</p>
-        <div class="proj-stack">
-          <span class="p-tag">3-Tier</span><span class="p-tag">Nginx</span>
-          <span class="p-tag">Apache</span><span class="p-tag">MariaDB</span>
-          <span class="p-tag">ELK Stack</span><span class="p-tag">Metricbeat</span><span class="p-tag">Firewall</span>
+        <div class="project-grid">
+          <button class="proj-card" type="button" data-project-index="0">
+            <span class="proj-num">01</span>
+            <span class="p-badge b-cloud">AWS Cloud</span>
+            <span class="p-badge b-award">최우수팀상</span>
+            <strong>AWS VDI · 3-Tier Web · AI Knowledge Base 통합 플랫폼</strong>
+            <span>WorkSpaces, 내부 웹 서비스, Kendra·Bedrock RAG, 로그 분석 흐름을 통합한 대표 프로젝트입니다.</span>
+            <span class="proj-stack"><em>WorkSpaces</em><em>Kendra</em><em>Bedrock</em><em>VPC Peering</em></span>
+          </button>
+          <button class="proj-card" type="button" data-project-index="1">
+            <span class="proj-num">02</span>
+            <span class="p-badge b-onprem">On-Premises</span>
+            <strong>패션 이커머스 서버 인프라 고가용성 전환 구축</strong>
+            <span>WEB/WAS/DB 3-Tier 구조와 ELK 기반 중앙 로그 분석 환경을 구성했습니다.</span>
+            <span class="proj-stack"><em>Nginx</em><em>PHP</em><em>MariaDB</em><em>ELK</em></span>
+          </button>
+          <button class="proj-card" type="button" data-project-index="2">
+            <span class="proj-num">03</span>
+            <span class="p-badge b-iot">IoT / AI</span>
+            <span class="p-badge b-award">연구노트상</span>
+            <strong>태양광 발전 예측 기반 스마트팜 시스템</strong>
+            <span>센서 데이터 수집, Django 서버, MariaDB, 발전량 예측 모델을 연동했습니다.</span>
+            <span class="proj-stack"><em>ESP8266</em><em>Raspberry Pi</em><em>Django</em><em>Simple RNN</em></span>
+          </button>
         </div>
-      </div>
-    </div>
+      </article>
+    </section>
 
-    <div class="proj-card reveal">
-      <div class="proj-left">
-        <div class="proj-num">03</div>
-        <div class="proj-badges">
-          <span class="p-badge b-iot">IoT / AI</span>
-          <span class="p-badge b-award">🏆 연구노트상</span>
+    <section class="deck-slide" data-slide="3" id="gallery">
+      <article class="slide-card gallery-card">
+        <div class="slide-kicker">04 — GALLERY</div>
+        <div class="slide-header">
+          <h2>아키텍처 갤러리</h2>
+          <p>대표 구성도를 먼저 보여주고, 상세 흐름도는 프로젝트 모달 안에서 단계별로 확인합니다.</p>
         </div>
-      </div>
-      <div class="proj-right">
-        <h3 class="proj-title">잉여 전력 활용을 위한 태양광 발전 예측 모델 비교 분석</h3>
-        <p class="proj-desc">ESP8266과 Raspberry Pi를 활용해 태양광 발전량을 예측하고, 수전해 장치 및 스마트팜 제어와 연동한 IoT·AI 통합 졸업 프로젝트입니다.</p>
-        <div class="proj-stack">
-          <span class="p-tag">Raspberry Pi</span><span class="p-tag">ESP8266</span>
-          <span class="p-tag">Django</span><span class="p-tag">MariaDB</span>
-          <span class="p-tag">Simple RNN</span><span class="p-tag">Python</span>
-        </div>
-      </div>
-    </div>
+        <div class="arch-grid" id="architectureGrid"></div>
+      </article>
+    </section>
 
+    <section class="deck-slide" data-slide="4" id="career">
+      <article class="slide-card">
+        <div class="slide-kicker">05 — CAREER</div>
+        <div class="slide-header">
+          <h2>경력 / 이력</h2>
+          <p>입학부터 전공, 복무, 연구실, 졸업, 클라우드 교육 흐름을 시간순으로 정리했습니다.</p>
+        </div>
+        <div class="career-grid">
+          <svg class="career-timeline-svg" viewBox="0 0 1000 420" aria-hidden="true" focusable="false">
+            <line class="timeline-main" x1="70" y1="390" x2="925" y2="390"></line>
+            <polygon class="timeline-arrow" points="925,374 970,390 925,406"></polygon>
+            <g class="timeline-steps">
+              <line x1="120" y1="390" x2="120" y2="320"></line>
+              <line x1="220" y1="390" x2="220" y2="285"></line>
+              <line x1="320" y1="390" x2="320" y2="250"></line>
+              <line x1="420" y1="390" x2="420" y2="215"></line>
+              <line x1="520" y1="390" x2="520" y2="180"></line>
+              <line x1="620" y1="390" x2="620" y2="145"></line>
+              <line x1="720" y1="390" x2="720" y2="110"></line>
+              <line x1="820" y1="390" x2="820" y2="75"></line>
+              <line x1="890" y1="390" x2="890" y2="58"></line>
+              <circle cx="120" cy="390" r="10"></circle>
+              <circle cx="220" cy="390" r="10"></circle>
+              <circle cx="320" cy="390" r="10"></circle>
+              <circle cx="420" cy="390" r="10"></circle>
+              <circle cx="520" cy="390" r="10"></circle>
+              <circle cx="620" cy="390" r="10"></circle>
+              <circle cx="720" cy="390" r="10"></circle>
+              <circle cx="820" cy="390" r="10"></circle>
+              <circle cx="890" cy="390" r="10"></circle>
+            </g>
+          </svg>
+          <div class="career-item"><div class="career-label"><time>2019</time><strong>고등학교 졸업</strong><span>전공 기반 학습 시작</span></div></div>
+          <div class="career-item"><div class="career-label"><time>2019</time><strong>강원대학교 입학</strong><span>정보통신공학 전공</span></div></div>
+          <div class="career-item"><div class="career-label"><time>2022 — 2023</time><strong>사회복무요원</strong><span>복무 완료</span></div></div>
+          <div class="career-item"><div class="career-label"><time>2024</time><strong>학부연구생</strong><span>유무선통신연구소 · 학술대회</span></div></div>
+          <div class="career-item"><div class="career-label"><time>2024</time><strong>스마트팜 졸업 프로젝트</strong><span>학술대회 수상 · 연구노트상</span></div></div>
+          <div class="career-item"><div class="career-label"><time>2025</time><strong>강원대학교 졸업</strong><span>정보통신공학 · GPA 4.01 / 4.5</span></div></div>
+          <div class="career-item"><div class="career-label"><time>2024 — 2025</time><strong>클라우드 인프라 과정 수료</strong><span>MegaZone Cloud · 최우수팀상</span></div></div>
+          <div class="career-item"><div class="career-label"><time>2025</time><strong>AWS SAA · 네트워크관리사</strong><span>2급 취득 · 역량 검증</span></div></div>
+          <div class="career-item now"><div class="career-label"><time>2025 — 현재</time><strong>취업 준비 · 포트폴리오</strong><span>Cloud · System · Network</span></div></div>
+        </div>
+      </article>
+    </section>
+
+    <button class="deck-arrow deck-arrow-next" id="nextSlide" type="button" aria-label="다음 슬라이드">
+      <span class="arrow-text">다음</span>
+      <span class="arrow-mark">›</span>
+    </button>
+  </main>
+
+  <div class="deck-tabs" aria-label="슬라이드 바로가기">
+    <span>신규 네비게이터 선택</span>
+    <button type="button" data-slide="0">자기소개</button>
+    <button type="button" data-slide="1">기술 역량</button>
+    <button type="button" data-slide="2">프로젝트 경험</button>
+    <button type="button" data-slide="3">갤러리</button>
+    <button type="button" data-slide="4">경력/이력</button>
   </div>
 </div>
-</section>
 
-<hr class="divider">
-
-<!-- ARCHITECTURE -->
-<section id="architecture" style="background:var(--off);">
-<div class="s-wrap">
-  <div class="s-label">04 — ARCHITECTURE</div>
-  <h2 class="s-title">아키텍처 <span>갤러리</span></h2>
-  <p class="arch-intro">대표 구성도는 메인에서 빠르게 확인하고, 세부 흐름도는 프로젝트 모달에서 단계별로 확인할 수 있습니다.</p>
-  <div class="arch-grid" id="architectureGrid"></div>
-</div>
-</section>
-
-<hr class="divider">
-
-<!-- TIMELINE -->
-<section id="timeline">
-<div class="s-wrap">
-  <div class="s-label">05 — EXPERIENCE</div>
-  <h2 class="s-title">경력 <span>이력</span></h2>
-  <div>
-    <div class="tl-wrap reveal">
-      <div class="tl-year">2025 — 현재</div>
-      <div class="tl-body">
-        <div class="tl-title">취업 준비 · 포트폴리오 심화</div>
-        <div class="tl-sub">Cloud Engineer / SE / NE 포지션 지원 중</div>
-      </div>
-    </div>
-    <div class="tl-wrap reveal">
-      <div class="tl-year">2025</div>
-      <div class="tl-body">
-        <div class="tl-title">AWS SAA · 네트워크관리사 2급 취득</div>
-        <div class="tl-sub">Amazon Web Services · 한국정보통신자격협회</div>
-      </div>
-    </div>
-    <div class="tl-wrap reveal">
-      <div class="tl-year">2024 — 2025</div>
-      <div class="tl-body">
-        <div class="tl-title">클라우드 인프라 엔지니어링 과정 수료</div>
-        <div class="tl-sub">MegaZone Cloud · 최우수팀상 수상</div>
-      </div>
-    </div>
-    <div class="tl-wrap reveal">
-      <div class="tl-year">2025</div>
-      <div class="tl-body">
-        <div class="tl-title">강원대학교 전자정보통신공학부 졸업</div>
-        <div class="tl-sub">정보통신공학 전공 · GPA 4.01 / 4.5</div>
-      </div>
-    </div>
-    <div class="tl-wrap reveal">
-      <div class="tl-year">2024</div>
-      <div class="tl-body" style="padding-bottom:0; border-left:none;">
-        <div class="tl-title">스마트팜 졸업 프로젝트</div>
-        <div class="tl-sub">연구노트상 수상</div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact-s" id="contact">
-<div class="contact-inner">
-  <div class="c-label">06 — CONTACT</div>
-  <h2 class="c-title">함께 일하고 싶으시다면<br>언제든지 연락해 주세요.</h2>
-  <p class="c-sub">Cloud · System · Network Engineering 포지션을 찾고 있습니다.<br>새로운 기회와 협업 제안을 환영합니다.</p>
-  <div class="c-links">
-    <button class="c-link" id="emailBtn" type="button">📬 <span>mowja@naver.com</span></button>
-  </div>
-</div>
-</section>
-
-<footer>곽덕연 · Kwak Deokyeon &nbsp;·&nbsp; Cloud &amp; Infrastructure Engineer &nbsp;·&nbsp; 2026</footer>
-
-<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
     <div class="modal-header">
@@ -315,7 +230,7 @@
         <div class="modal-num" id="modalNum"></div>
         <h3 class="modal-title" id="modalTitle"></h3>
       </div>
-      <button class="modal-close" id="modalClose">✕</button>
+      <button class="modal-close" id="modalClose" type="button">×</button>
     </div>
     <div class="modal-body">
       <div class="modal-badges" id="modalBadges"></div>
@@ -363,8 +278,6 @@
   </div>
 </div>
 
-
-<!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightboxOverlay">
   <img id="lightboxImg" src="" alt="아키텍처 확대">
 </div>

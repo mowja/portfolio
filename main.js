@@ -1,12 +1,51 @@
 document.documentElement.classList.add('js-ready');
 
-/* ── 스크롤 애니메이션 ── */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
+/* ── 카드뉴스 슬라이드 ── */
+const slides = Array.from(document.querySelectorAll('.deck-slide'));
+const slideButtons = Array.from(document.querySelectorAll('button[data-slide]'));
+const slideCounter = document.getElementById('slideCounter');
+const prevSlideBtn = document.getElementById('prevSlide');
+const nextSlideBtn = document.getElementById('nextSlide');
+let currentSlide = 0;
+
+function normalizeSlideIndex(index) {
+  return (index + slides.length) % slides.length;
+}
+
+function showSlide(index) {
+  currentSlide = normalizeSlideIndex(index);
+  slides.forEach(function(slide, slideIndex) {
+    slide.classList.toggle('active', slideIndex === currentSlide);
   });
-}, { threshold: 0.05 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  slideButtons.forEach(function(button) {
+    button.classList.toggle('active', Number(button.dataset.slide) === currentSlide);
+  });
+  if (slideCounter) {
+    slideCounter.textContent = String(currentSlide + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+  }
+}
+
+slideButtons.forEach(function(button) {
+  button.addEventListener('click', function() {
+    showSlide(Number(button.dataset.slide));
+  });
+});
+
+if (prevSlideBtn) {
+  prevSlideBtn.addEventListener('click', function() {
+    showSlide(currentSlide - 1);
+  });
+}
+
+if (nextSlideBtn) {
+  nextSlideBtn.addEventListener('click', function() {
+    showSlide(currentSlide + 1);
+  });
+}
+
+if (slides.length) {
+  showSlide(0);
+}
 
 /* ── 모달 데이터 ── */
 const projects = [
@@ -143,7 +182,7 @@ const architectureCards = [
 const architectureGrid = document.getElementById('architectureGrid');
 if (architectureGrid) {
   architectureGrid.innerHTML = architectureCards.map(function(card) {
-    return '<button class="arch-card reveal" type="button" data-lightbox-src="' + card.img + '" data-lightbox-alt="' + card.title + '">' +
+    return '<button class="arch-card" type="button" data-lightbox-src="' + card.img + '" data-lightbox-alt="' + card.title + '">' +
       '<span class="arch-card-thumb"><img src="' + card.img + '" alt="' + card.title + '"></span>' +
       '<span class="arch-card-body">' +
         '<span class="arch-card-kicker">' + card.label + '</span>' +
@@ -153,7 +192,6 @@ if (architectureGrid) {
       '</span>' +
     '</button>';
   }).join('');
-  architectureGrid.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
 }
 
 /* ── 모달 열기/닫기 ── */
@@ -240,8 +278,10 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.proj-card').forEach(function(card, idx) {
-  card.addEventListener('click', function() { openModal(idx); });
+document.querySelectorAll('[data-project-index]').forEach(function(card) {
+  card.addEventListener('click', function() {
+    openModal(Number(card.dataset.projectIndex));
+  });
 });
 
 document.getElementById('modalClose').addEventListener('click', closeModal);
@@ -282,5 +322,15 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     lightboxOverlay.classList.remove('open');
     closeModal();
+    return;
+  }
+  if (overlay.classList.contains('open') || lightboxOverlay.classList.contains('open')) {
+    return;
+  }
+  if (e.key === 'ArrowLeft') {
+    showSlide(currentSlide - 1);
+  }
+  if (e.key === 'ArrowRight') {
+    showSlide(currentSlide + 1);
   }
 });
