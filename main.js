@@ -294,9 +294,10 @@ overlay.addEventListener('click', function(e) {
 var emailBtn = document.getElementById('emailBtn');
 if (emailBtn) {
   emailBtn.addEventListener('click', function() {
-    navigator.clipboard.writeText('mowja@naver.com').then(function() {
+    var emailAddress = ['mowja', 'naver.com'].join('@');
+    navigator.clipboard.writeText(emailAddress).then(function() {
       emailBtn.innerHTML = '✓ <span>복사됐습니다!</span>';
-      setTimeout(function() { emailBtn.innerHTML = '📬 <span>mowja@naver.com</span>'; }, 2000);
+      setTimeout(function() { emailBtn.textContent = '이메일 복사'; }, 2000);
     });
   });
 }
