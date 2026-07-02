@@ -1,0 +1,12 @@
+[
+  "core-networks-equipment-replacement.md",
+  "github-actions-s3-static-deploy.md",
+  "3tier-dns-dhcp-nat.md",
+  "elk-log-troubleshooting.md",
+  "test-vpc-peering-checklist.md",
+  "test-cloudwatch-log-notes.md",
+  "test-linux-routing-lab.md",
+  "test-s3-cloudfront-cache.md",
+  "test-workspaces-dns-trouble.md",
+  "test-no-image-note.md"
+]

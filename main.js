@@ -155,43 +155,263 @@ const projects = [
   }
 ];
 
-const architectureCards = [
+const defaultGalleryPosts = [
   {
-    title: 'AWS VDI · Web · AI · Logging 통합 구성도',
-    label: '대표 프로젝트',
-    desc: '고객 웹 서비스, VDI 서비스, 내부 3-Tier 웹, AI 문서 검색, 로그 분석 흐름을 한 장으로 정리한 통합 아키텍처입니다.',
+    title: 'GitHub Actions와 S3로 정적 웹페이지 배포하기',
+    label: '실습 가이드',
+    date: '2026.06',
+    readTime: '8 min read',
+    desc: 'Git 저장소 변경 사항을 GitHub Actions로 감지하고, S3와 CloudFront에 정적 웹페이지를 배포하는 흐름을 정리했습니다.',
     img: 'images/arch_01.png',
-    tags: ['WorkSpaces', 'Kendra', 'Bedrock', '3-Tier', 'Logging']
+    tags: ['GitHub Actions', 'S3', 'CloudFront', 'CI/CD'],
+    body: [
+      '정적 포트폴리오 사이트를 수동으로 업로드하지 않고, Git push 이후 자동으로 배포되도록 구성한 실습 기록입니다.',
+      '핵심은 GitHub Actions 워크플로에서 빌드 산출물을 만들고, AWS 인증 정보를 통해 S3 버킷에 동기화한 뒤 CloudFront 캐시 무효화를 수행하는 구조입니다.',
+      '실습 과정에서는 IAM 권한 범위, S3 정적 호스팅 설정, CloudFront 배포 연결, 캐시 갱신 시점을 함께 확인했습니다.'
+    ],
+    links: [
+      { text: '웹페이지 CI/CD 실습 가이드', href: '웹페이지_CICD_S3과GIT_실습가이드.md' },
+      { text: 'CLI 중심 실습 가이드', href: '웹페이지_CICD_S3과GIT_실습가이드_CLI.md' }
+    ]
   },
   {
-    title: 'On-Premises 3-Tier Logging Platform',
-    label: '온프레미스',
-    desc: 'Nginx, PHP, MariaDB 기반 3-Tier 서비스와 ELK, Metricbeat, Rsyslog를 연결한 중앙 로그 구성도입니다.',
+    title: '3-Tier 인프라에서 DNS, DHCP, NAT 흐름 잡기',
+    label: '네트워크 노트',
+    date: '2026.06',
+    readTime: '6 min read',
+    desc: '웹, WAS, DB 계층을 분리한 뒤 DNS, DHCP, NAT가 실제 접속 흐름에서 어떤 역할을 하는지 정리한 글입니다.',
     img: 'images/arch_02.png',
-    tags: ['Nginx', 'PHP', 'MariaDB', 'ELK', 'Metricbeat']
+    tags: ['3-Tier', 'DNS', 'DHCP', 'NAT', 'Routing'],
+    body: [
+      '3-Tier 구성은 서버를 나누는 것에서 끝나지 않고, 사용자의 요청이 어느 네트워크 경로로 이동하는지 설명할 수 있어야 의미가 있습니다.',
+      '이 글은 클라이언트 주소 할당, 도메인 이름 해석, 내부 서버 접근, 외부 통신을 위한 NAT 흐름을 하나의 실습 시나리오로 묶어 정리합니다.',
+      '장애가 났을 때는 먼저 IP 할당 여부, DNS 응답, 라우팅 테이블, 방화벽 정책 순서로 확인하면 원인 범위를 빠르게 줄일 수 있습니다.'
+    ],
+    links: [
+      { text: '3-Tier DNS/DHCP/NAT PDF', href: 'assets/docs/03-3tier-dns-dhcp-nat-guide.pdf' },
+      { text: 'DHCP Web NAT PDF', href: 'assets/docs/02-dhcp-web-nat-guide.pdf' }
+    ]
   },
   {
-    title: 'IoT Smart Farm AI Prediction System',
-    label: 'IoT / AI',
-    desc: 'ESP8266 센서 데이터, Raspberry Pi Django 서버, MariaDB, 태양광 발전 예측 모델을 연결한 스마트팜 구조입니다.',
+    title: 'ELK로 서버 로그를 모아 장애 원인 추적하기',
+    label: '운영 기록',
+    date: '2026.06',
+    readTime: '7 min read',
+    desc: 'Nginx, WAS, DB 로그를 한곳에 모으고 Kibana에서 장애 단서를 찾는 과정을 운영 관점으로 정리했습니다.',
     img: 'images/arch_03.png',
-    tags: ['ESP8266', 'Raspberry Pi', 'Django', 'MariaDB', 'Simple RNN']
+    tags: ['ELK', 'Nginx', 'MariaDB', 'Logstash', 'Kibana'],
+    body: [
+      '서비스가 여러 계층으로 나뉘면 장애 원인을 한 서버 안에서만 찾기 어렵습니다. 그래서 로그를 중앙으로 모으는 구조가 필요합니다.',
+      'Filebeat 또는 Rsyslog로 로그를 수집하고, Logstash에서 필드를 정리한 뒤 Elasticsearch에 저장하면 Kibana에서 시간대별 요청 흐름을 확인할 수 있습니다.',
+      '실습에서는 웹 응답 지연, DB slow query, 방화벽 차단처럼 서로 다른 증상을 로그 기준으로 연결해 보는 데 초점을 맞췄습니다.'
+    ],
+    links: [
+      { text: '3-Tier ELK 프로젝트 가이드', href: 'assets/docs/01-3tier-elk-project-guide.pdf' }
+    ]
   }
 ];
 
 const architectureGrid = document.getElementById('architectureGrid');
-if (architectureGrid) {
-  architectureGrid.innerHTML = architectureCards.map(function(card) {
-    return '<button class="arch-card" type="button" data-lightbox-src="' + card.img + '" data-lightbox-alt="' + card.title + '">' +
-      '<span class="arch-card-thumb"><img src="' + card.img + '" alt="' + card.title + '"></span>' +
+
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function parseListValue(value) {
+  return String(value || '')
+    .replace(/^\[/, '')
+    .replace(/\]$/, '')
+    .split(',')
+    .map(function(item) { return item.trim().replace(/^["']|["']$/g, ''); })
+    .filter(Boolean);
+}
+
+function inlineMarkdown(value) {
+  return escapeHtml(value)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+
+function markdownToHtml(markdown) {
+  const lines = String(markdown || '').replace(/\r\n/g, '\n').trim().split('\n');
+  const html = [];
+  let paragraph = [];
+  let list = [];
+
+  function flushParagraph() {
+    if (!paragraph.length) return;
+    html.push('<p>' + inlineMarkdown(paragraph.join(' ').trim()) + '</p>');
+    paragraph = [];
+  }
+
+  function flushList() {
+    if (!list.length) return;
+    html.push('<ul>' + list.map(function(item) {
+      return '<li>' + inlineMarkdown(item) + '</li>';
+    }).join('') + '</ul>');
+    list = [];
+  }
+
+  lines.forEach(function(line) {
+    const text = line.trim();
+    if (!text) {
+      flushParagraph();
+      flushList();
+      return;
+    }
+    const heading = text.match(/^(#{1,6})\s+(.+)$/);
+    if (heading) {
+      flushParagraph();
+      flushList();
+      html.push('<h4>' + inlineMarkdown(heading[2]) + '</h4>');
+      return;
+    }
+    const bullet = text.match(/^-\s+(.+)$/);
+    if (bullet) {
+      flushParagraph();
+      list.push(bullet[1]);
+      return;
+    }
+    flushList();
+    paragraph.push(text);
+  });
+
+  flushParagraph();
+  flushList();
+  return html.join('');
+}
+
+function parseMarkdownPost(markdown, sourcePath) {
+  const raw = String(markdown || '').replace(/^\uFEFF/, '').replace(/\r\n/g, '\n');
+  const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+  const meta = {};
+  const body = match ? match[2] : raw;
+  if (match) {
+    match[1].split('\n').forEach(function(line) {
+      const pair = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
+      if (pair) meta[pair[1]] = pair[2].trim().replace(/^["']|["']$/g, '');
+    });
+  }
+  const firstParagraph = body.replace(/^#+\s+/gm, '').split(/\n{2,}/).map(function(item) {
+    return item.trim();
+  }).filter(Boolean)[0] || '';
+  const img = meta.img && !/[\\/]$/.test(meta.img) ? meta.img : '';
+  return {
+    title: meta.title || sourcePath,
+    label: meta.label || '기록',
+    date: meta.date || '',
+    readTime: meta.readTime || meta.read_time || '',
+    desc: meta.desc || firstParagraph.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1').slice(0, 120),
+    img: img,
+    tags: parseListValue(meta.tags),
+    bodyHtml: markdownToHtml(body),
+    links: String(meta.links || '').split(';').map(function(item) {
+      const parts = item.split('|').map(function(part) { return part.trim(); });
+      return parts.length === 2 ? { text: parts[0], href: parts[1] } : null;
+    }).filter(Boolean)
+  };
+}
+
+let galleryPosts = defaultGalleryPosts.slice();
+
+function renderGalleryPosts(posts) {
+  if (!architectureGrid) return;
+  architectureGrid.innerHTML = posts.map(function(card, index) {
+    const hasImage = Boolean(card.img);
+    return '<button class="arch-card blog-card' + (hasImage ? '' : ' no-image') + '" type="button" data-article-index="' + index + '">' +
+      (hasImage ? '<span class="arch-card-thumb"><img src="' + escapeHtml(card.img) + '" alt="' + escapeHtml(card.title) + '"></span>' : '') +
       '<span class="arch-card-body">' +
-        '<span class="arch-card-kicker">' + card.label + '</span>' +
-        '<span class="arch-card-title">' + card.title + '</span>' +
-        '<span class="arch-card-desc">' + card.desc + '</span>' +
-        '<span class="arch-card-tags">' + card.tags.map(function(tag) { return '<span>' + tag + '</span>'; }).join('') + '</span>' +
+        '<span class="arch-card-kicker">' + escapeHtml(card.label) + '</span>' +
+        '<span class="arch-card-title">' + escapeHtml(card.title) + '</span>' +
+        '<span class="blog-card-meta">' + escapeHtml([card.date, card.readTime].filter(Boolean).join(' · ')) + '</span>' +
+        '<span class="arch-card-desc">' + escapeHtml(card.desc) + '</span>' +
+        '<span class="arch-card-tags">' + card.tags.map(function(tag) { return '<span>' + escapeHtml(tag) + '</span>'; }).join('') + '</span>' +
       '</span>' +
     '</button>';
   }).join('');
+  document.querySelectorAll('[data-article-index]').forEach(function(card) {
+    card.addEventListener('click', function() {
+      openArticle(Number(card.dataset.articleIndex));
+    });
+  });
+}
+
+function loadGalleryPosts() {
+  if (!architectureGrid || !window.fetch) {
+    renderGalleryPosts(galleryPosts);
+    return;
+  }
+  fetch('assets/posts/manifest.json')
+    .then(function(response) {
+      if (!response.ok) throw new Error('manifest not found');
+      return response.json();
+    })
+    .then(function(files) {
+      return Promise.all(files.map(function(file) {
+        return fetch('assets/posts/' + file).then(function(response) {
+          if (!response.ok) throw new Error(file + ' not found');
+          return response.text().then(function(markdown) {
+            return parseMarkdownPost(markdown, 'assets/posts/' + file);
+          });
+        });
+      }));
+    })
+    .then(function(posts) {
+      galleryPosts = posts.length ? posts : defaultGalleryPosts.slice();
+      renderGalleryPosts(galleryPosts);
+    })
+    .catch(function() {
+      galleryPosts = defaultGalleryPosts.slice();
+      renderGalleryPosts(galleryPosts);
+    });
+}
+
+loadGalleryPosts();
+
+const articleOverlay = document.getElementById('articleOverlay');
+const articleClose = document.getElementById('articleClose');
+
+function openArticle(idx) {
+  const post = galleryPosts[idx];
+  const articleHero = document.getElementById('articleHero');
+  document.getElementById('articleKicker').textContent = post.label;
+  document.getElementById('articleTitle').textContent = post.title;
+  document.getElementById('articleMeta').textContent = [post.date, post.readTime, post.tags.join(' / ')].filter(Boolean).join(' · ');
+  if (post.img) {
+    articleHero.innerHTML = '<img src="' + escapeHtml(post.img) + '" alt="' + escapeHtml(post.title) + '">';
+    articleHero.style.display = 'block';
+  } else {
+    articleHero.innerHTML = '';
+    articleHero.style.display = 'none';
+  }
+  document.getElementById('articleBody').innerHTML = post.bodyHtml || post.body.map(function(paragraph) {
+    return '<p>' + paragraph + '</p>';
+  }).join('');
+  document.getElementById('articleLinks').innerHTML = post.links.map(function(link) {
+    return '<a href="' + escapeHtml(link.href) + '" target="_blank" rel="noopener">' + escapeHtml(link.text) + '</a>';
+  }).join('');
+  articleOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  articleOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+if (articleClose) {
+  articleClose.addEventListener('click', closeArticle);
+}
+
+if (articleOverlay) {
+  articleOverlay.addEventListener('click', function(e) {
+    if (e.target === articleOverlay) closeArticle();
+  });
 }
 
 /* ── 모달 열기/닫기 ── */
@@ -322,10 +542,11 @@ lightboxOverlay.addEventListener('click', function() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     lightboxOverlay.classList.remove('open');
+    closeArticle();
     closeModal();
     return;
   }
-  if (overlay.classList.contains('open') || lightboxOverlay.classList.contains('open')) {
+  if (overlay.classList.contains('open') || lightboxOverlay.classList.contains('open') || articleOverlay.classList.contains('open')) {
     return;
   }
   if (e.key === 'ArrowLeft') {
