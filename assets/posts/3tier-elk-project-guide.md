@@ -24,16 +24,16 @@ GNS3로 시뮬레이션한 라우터가 WEB, WAS, DB, Bastion 4개 서브넷의 
 
 ### 주요 설정
 
-- Netplan 고정 IP 및 라우팅: WEB(192.168.1.10), WAS1(192.168.2.10), WAS2(192.168.2.20), DB(192.168.3.10) 각 서버의 enp0s3에 정적 IP와 해당 서브넷 게이트웨이로의 기본 라우트를 지정하고, Bastion Host는 enp0s3(고정 IP, 내부망)와 enp0s8(DHCP, 외부망) 두 어댑터를 분리해 관리망과 인터넷 연결을 구분
-- 라우터 인터페이스 설정: GNS3 라우터(C3600)의 FastEthernet 1/0~1/3에 각각 WEB, WAS, DB, Bastion 서브넷의 게이트웨이 IP(192.168.1.250, 192.168.2.250, 192.168.3.250, 192.168.4.250)를 부여하고 no shutdown으로 활성화
-- Nginx 로드밸런싱: /etc/nginx/conf.d/3tier.conf에 upstream was_backend { server 192.168.2.10; server 192.168.2.20; }를 정의하고, /api/ 요청을 이 업스트림으로 proxy_pass해 WAS 이중화 트래픽을 분산
-- PHP-Redis 세션 연동: WAS1, WAS2 양쪽의 php.ini에서 session.save_handler = redis, session.save_path = "tcp://192.168.1.10:6379?auth=********"로 지정해 두 WAS가 WEB 서버의 Redis를 동일한 세션 저장소로 공유
-- Redis 외부 접속 허용: /etc/redis/redis.conf에서 bind 0.0.0.0, requirepass ******** 설정 후 redis-cli에서 AUTH로 인증 동작 확인
-- MariaDB 외부 접속 허용 및 계정 분리: bind-address를 0.0.0.0으로 변경하고, 로컬 관리 계정, WAS 전용 접속 계정(was_user), Bastion 전용 접속 계정(bastion_user)을 목적별로 분리 생성
-- Rsyslog 로그 전달: 모든 서버의 /etc/rsyslog.d/50-remote.conf에 *.* @192.168.4.10:5140을 추가해 로그를 Bastion(Logstash)으로 전송
-- Elasticsearch, Kibana 외부 접속 허용: elasticsearch.yml의 network.host: 0.0.0.0, http.host: 0.0.0.0과 kibana.yml의 server.host: "0.0.0.0" 설정으로 Bastion 외부에서 접근 가능하도록 구성
-- Logstash 로그 태깅 및 인덱스 분리: /etc/logstash/conf.d/remote-syslog.conf에서 program 필드를 nginx, apache2|php, mariadb|mysqld, iptables|firewalld|ufw, sshd, metricbeat|systemd|kernel|syslog 등으로 매칭해 web_log, was_log, db_log, firewall_log, ssh_log, system_resource_log 태그를 부여하고, 태그별로 web-logs-*, was-logs-*, db-logs-*, firewall-logs-*, ssh-logs-*, system-resource-logs-* 인덱스에 분리 저장, 매칭되지 않는 로그는 drop 처리
-- Metricbeat 설정: 각 서버의 metricbeat.yml에서 output.elasticsearch.hosts와 setup.kibana.host를 Bastion(192.168.4.10)으로 지정하고 system 모듈을 활성화(metricbeat modules enable system, metricbeat setup)해 CPU, 메모리, 디스크, 네트워크 지표를 수집
+- **Netplan 고정 IP 및 라우팅**: WEB(192.168.1.10), WAS1(192.168.2.10), WAS2(192.168.2.20), DB(192.168.3.10) 각 서버의 enp0s3에 정적 IP와 해당 서브넷 게이트웨이로의 기본 라우트를 지정하고, Bastion Host는 enp0s3(고정 IP, 내부망)와 enp0s8(DHCP, 외부망) 두 어댑터를 분리해 관리망과 인터넷 연결을 구분
+- **라우터 인터페이스 설정**: GNS3 라우터(C3600)의 FastEthernet 1/0~1/3에 각각 WEB, WAS, DB, Bastion 서브넷의 게이트웨이 IP(192.168.1.250, 192.168.2.250, 192.168.3.250, 192.168.4.250)를 부여하고 no shutdown으로 활성화
+- **Nginx 로드밸런싱**: /etc/nginx/conf.d/3tier.conf에 upstream was_backend { server 192.168.2.10; server 192.168.2.20; }를 정의하고, /api/ 요청을 이 업스트림으로 proxy_pass해 WAS 이중화 트래픽을 분산
+- **PHP-Redis 세션 연동**: WAS1, WAS2 양쪽의 php.ini에서 session.save_handler = redis, session.save_path = "tcp://192.168.1.10:6379?auth=********"로 지정해 두 WAS가 WEB 서버의 Redis를 동일한 세션 저장소로 공유
+- **Redis 외부 접속 허용**: /etc/redis/redis.conf에서 bind 0.0.0.0, requirepass ******** 설정 후 redis-cli에서 AUTH로 인증 동작 확인
+- **MariaDB 외부 접속 허용 및 계정 분리**: bind-address를 0.0.0.0으로 변경하고, 로컬 관리 계정, WAS 전용 접속 계정(was_user), Bastion 전용 접속 계정(bastion_user)을 목적별로 분리 생성
+- **Rsyslog 로그 전달**: 모든 서버의 /etc/rsyslog.d/50-remote.conf에 *.* @192.168.4.10:5140을 추가해 로그를 Bastion(Logstash)으로 전송
+- **Elasticsearch, Kibana 외부 접속 허용**: elasticsearch.yml의 network.host: 0.0.0.0, http.host: 0.0.0.0과 kibana.yml의 server.host: "0.0.0.0" 설정으로 Bastion 외부에서 접근 가능하도록 구성
+- **Logstash 로그 태깅 및 인덱스 분리**: /etc/logstash/conf.d/remote-syslog.conf에서 program 필드를 nginx, apache2|php, mariadb|mysqld, iptables|firewalld|ufw, sshd, metricbeat|systemd|kernel|syslog 등으로 매칭해 web_log, was_log, db_log, firewall_log, ssh_log, system_resource_log 태그를 부여하고, 태그별로 web-logs-*, was-logs-*, db-logs-*, firewall-logs-*, ssh-logs-*, system-resource-logs-* 인덱스에 분리 저장, 매칭되지 않는 로그는 drop 처리
+- **Metricbeat 설정**: 각 서버의 metricbeat.yml에서 output.elasticsearch.hosts와 setup.kibana.host를 Bastion(192.168.4.10)으로 지정하고 system 모듈을 활성화(metricbeat modules enable system, metricbeat setup)해 CPU, 메모리, 디스크, 네트워크 지표를 수집
 
 ### 트러블슈팅
 
