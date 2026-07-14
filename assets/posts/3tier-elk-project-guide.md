@@ -3,7 +3,7 @@ title: Nginx, Apache, PHP, MariaDB, ELK Stack 구성 실습
 label: 실습 가이드
 readTime: PDF 문서
 desc: Nginx, WAS(Apache+PHP), MariaDB로 3-Tier 웹 아키텍처를 구성하고, Redis로 WAS 서버 간 세션을 공유하며, ELK Stack과 Rsyslog, Metricbeat로 중앙집중식 로그 수집과 리소스 모니터링 환경을 구축한 실습입니다.
-img: images/arch_03.png
+img: images/Guide_main/Nginx, Apache, PHP, MariaDB, ELK Stack.png
 tags: Nginx, Apache, PHP, MariaDB, ELK Stack
 links: PDF 열기|assets/docs/01-3tier-elk-project-guide.pdf
 ---
