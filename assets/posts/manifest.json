@@ -1,6 +1,4 @@
 [
   "core-networks-equipment-replacement.md",
-  "github-actions-s3-static-deploy.md",
-  "3tier-dns-dhcp-nat.md",
-  "elk-log-troubleshooting.md"
+  "github-actions-s3-static-deploy.md"
 ]
