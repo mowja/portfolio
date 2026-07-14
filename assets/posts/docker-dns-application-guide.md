@@ -4,7 +4,7 @@ label: 실습 가이드
 date: 2026.06
 readTime: PDF 문서
 desc: Docker 컨테이너로 웹 서비스를 구성하고 이미지 배포, Private Registry, BIND DNS 컨테이너까지 확장한 실습 문서입니다.
-img: images/arch_01.png
+img: images/Guide_main/04-docker-dns.png
 tags: Docker, Nginx, Registry, BIND9, DNS
 links: PDF 열기|assets/docs/04-docker-dns-application-guide.pdf
 ---
